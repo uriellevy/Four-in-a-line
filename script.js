@@ -27,7 +27,7 @@ const setGame = () => {
         board.push(row);
     }
 };
-function setPiece(event) {
+const setPiece = (event) => {
     if (gameOver)
         return;
     //get coords of tile clicked
@@ -50,7 +50,64 @@ function setPiece(event) {
         currPlayer = playerOne;
     }
     console.log(currPlayer);
-    r -= 1; //update the row height for that column
+    r--; //update the row height for that column
     currColumns[c] = r; //update the array
-    // checkWinner();
-}
+    checkWinner();
+};
+const checkWinner = () => {
+    //horizontal check
+    for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+            if (board[r][c] !== " ") {
+                const fourEqual = board[r][c] === board[r][c + 1] && board[r][c + 1] === board[r][c + 2] && board[r][c + 2] === board[r][c + 3];
+                if (fourEqual) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+    //vertical check 
+    for (let r = 0; r < rows - 3; r++) {
+        for (let c = 0; c < columns - 1; c++) {
+            if (board[r][c] !== " ") {
+                const fourEqual = board[r][c] === board[r + 1][c] && board[r + 1][c] === board[r + 2][c] && board[r + 2][c] === board[r + 3][c];
+                if (fourEqual) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+    // anti diagonal check
+    for (let r = 0; r < rows - 3; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+            if (board[r][c] != ' ') {
+                const fourEqual = board[r][c] == board[r + 1][c + 1] && board[r + 1][c + 1] == board[r + 2][c + 2] && board[r + 2][c + 2] == board[r + 3][c + 3];
+                if (fourEqual) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+    // diagonal check
+    for (let r = 3; r < rows; r++) {
+        for (let c = 0; c < columns - 3; c++) {
+            if (board[r][c] != ' ') {
+                const fourEqual = board[r][c] == board[r - 1][c + 1] && board[r - 1][c + 1] == board[r - 2][c + 2] && board[r - 2][c + 2] == board[r - 3][c + 3];
+                if (fourEqual) {
+                    setWinner(r, c);
+                    return;
+                }
+            }
+        }
+    }
+};
+const setWinner = (r, c) => {
+    const winner = document.getElementById("winner");
+    if (winner) {
+        board[r][c] === playerOne ? winner.innerText = "Red Wins" : winner.innerText = "Yellow Wins";
+    }
+    gameOver = true;
+};

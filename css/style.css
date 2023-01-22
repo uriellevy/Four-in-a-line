@@ -24,11 +24,11 @@ body {
 }
 
 .red-piece {
-  background-color: red;
+  background-color: rgb(104, 25, 25);
 }
 
 .yellow-piece {
-  background-color: yellow;
+  background-color: rgb(82, 82, 27);
 }
 
 /*# sourceMappingURL=style.css.map */
