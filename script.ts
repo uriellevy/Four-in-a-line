@@ -31,6 +31,7 @@ const setGame = () => {
     }
 }
 
+
 function setPiece(event: any) {
     if (gameOver) return;
 
@@ -46,10 +47,21 @@ function setPiece(event: any) {
         return;
     }
 
-    console.log(board)
+    board[r][c] = currPlayer;
+    let tile = document.getElementById(r.toString() + "-" + c.toString());
+    if (currPlayer === playerOne) {
+        tile?.classList.add("red-piece");
+        currPlayer = playerTwo;
+    } else {
+        tile?.classList.add("yellow-piece");
+        currPlayer = playerOne;
+    }
+    console.log(currPlayer)
 
+    r -= 1; //update the row height for that column
+    currColumns[c] = r; //update the array
 
-
+    // checkWinner();
 }
 
 

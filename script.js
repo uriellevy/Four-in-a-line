@@ -39,5 +39,18 @@ function setPiece(event) {
     if (r < 0) { // board[r][c] != ' '
         return;
     }
-    console.log(board);
+    board[r][c] = currPlayer;
+    let tile = document.getElementById(r.toString() + "-" + c.toString());
+    if (currPlayer === playerOne) {
+        tile === null || tile === void 0 ? void 0 : tile.classList.add("red-piece");
+        currPlayer = playerTwo;
+    }
+    else {
+        tile === null || tile === void 0 ? void 0 : tile.classList.add("yellow-piece");
+        currPlayer = playerOne;
+    }
+    console.log(currPlayer);
+    r -= 1; //update the row height for that column
+    currColumns[c] = r; //update the array
+    // checkWinner();
 }
