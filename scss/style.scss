@@ -39,3 +39,14 @@ h1 {
 .yellow-piece {
     background-color: rgb(117, 117, 40);
 }
+
+.out {
+    width: 200px;
+    height: 200px;
+    background-color: red;
+    .in {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+}
