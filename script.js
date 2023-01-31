@@ -19,7 +19,7 @@ const setGame = () => {
         for (let c = 0; c < columns; c++) {
             row.push(" ");
             const tile = document.createElement("div");
-            tile.id = r.toString() + "-" + c.toString();
+            tile.id = `${r}-${c}`;
             tile.classList.add("tile");
             tile.addEventListener("click", setPiece);
             (_a = document.getElementById("board")) === null || _a === void 0 ? void 0 : _a.append(tile);
@@ -49,7 +49,6 @@ const setPiece = (event) => {
         tile === null || tile === void 0 ? void 0 : tile.classList.add("yellow-piece");
         currPlayer = playerOne;
     }
-    console.log(currPlayer);
     r--; //update the row height for that column
     currColumns[c] = r; //update the array
     checkWinner();
